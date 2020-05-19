@@ -34,10 +34,6 @@ class Artist
     songs.each { |song| puts song.name }
   end
 
-  def save
-    @@all << self
-  end
-
   def songs
     @songs
   end
