@@ -29,7 +29,7 @@ class Artist
 
 
   def songs #lists all songs that belong to this artist (FAILED - 2) ?
-    @songs
+    Songs.all.select {|song| song.artist == self}
   end
 
   def self.find_or_create_by_name(artist_name)
