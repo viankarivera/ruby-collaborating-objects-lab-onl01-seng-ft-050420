@@ -19,34 +19,26 @@ class Artist
     artist
   end
 
-  def add_song(song) #keeps track of an artist's songs (FAILED - 1) ?
+  def self.find(name)
+    self.all.detect { |artist| artist.name == name }
+  end
+
+  def self.find_or_create_by_name(name)
+    self.find(name) || self.create(name)
+  end
+
+  def add_song(song)
     @songs << song
+  end
+
+  def print_songs
+    songs.each { |song| puts song.name }
   end
 
   def save
     @@all << self
   end
 
-
-  def songs #lists all songs that belong to this artist (FAILED - 2) ?
-    Songs.all.select {|song| song.artist == self}
+  def songs
+    @songs
   end
-
-  def self.find_or_create_by_name(artist_name)
-      found_artist = self.all.find {|artist| artist.name == artist_name}
-      if found_artist
-        found_artist
-      else
-        new_artist = self.new(artist_name)
-        new_artist.save
-        new_artist
-      end
-    end
-
-    def print_songs #lists all of the artist's songs (FAILED - 3) ?
-      @songs.each do |song|
-        puts song.name
-      end
-    end
-
-end
